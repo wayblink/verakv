@@ -1,14 +1,14 @@
-package main
+package kv
 
 import (
 	"fmt"
-	"github.com/wayblink/verakv/kv"
+	"testing"
 )
 
-func main() {
-	db := kv.Open()
+func TestDb(t *testing.T) {
+	db := Open()
 	defer db.Close()
-	db.Set(&kv.Entry{
+	db.Set(&Entry{
 		Key:   ([]byte)("key1"),
 		Value: ([]byte)("value1"),
 	})
@@ -20,4 +20,5 @@ func main() {
 
 	entry, _ = db.Get(([]byte)("key1"))
 	fmt.Println(string(entry.Value))
+
 }
